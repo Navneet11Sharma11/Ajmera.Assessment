@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ajmera.Assessment.API", "Ajmera.Assessment.API\Ajmera.Assessment.API.csproj", "{1A5C0286-BD5F-4BB6-811D-8CC5F8E6D5DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ajmera.Assessment.BL", "Ajmera.Assessment.BL\Ajmera.Assessment.BL.csproj", "{88A2316B-867D-46DC-846F-B936C811B8D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ajmera.Assessment.DL", "Ajmera.Assessment.DL\Ajmera.Assessment.DL.csproj", "{E6135A68-99A8-4C70-B208-EE3016F35625}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ajmera.Assessment.Shared", "Ajmera.Assessment.Shared\Ajmera.Assessment.Shared.csproj", "{7F6F84C0-B4D0-4533-948A-A029501D204A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ajmera.Assessment.Test", "Ajmera.Assessment.Test\Ajmera.Assessment.Test.csproj", "{98480441-C84A-47B0-B994-30F3BB85BAC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A5C0286-BD5F-4BB6-811D-8CC5F8E6D5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5C0286-BD5F-4BB6-811D-8CC5F8E6D5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5C0286-BD5F-4BB6-811D-8CC5F8E6D5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5C0286-BD5F-4BB6-811D-8CC5F8E6D5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A2316B-867D-46DC-846F-B936C811B8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A2316B-867D-46DC-846F-B936C811B8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A2316B-867D-46DC-846F-B936C811B8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A2316B-867D-46DC-846F-B936C811B8D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6135A68-99A8-4C70-B208-EE3016F35625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6135A68-99A8-4C70-B208-EE3016F35625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6135A68-99A8-4C70-B208-EE3016F35625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6135A68-99A8-4C70-B208-EE3016F35625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F6F84C0-B4D0-4533-948A-A029501D204A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F6F84C0-B4D0-4533-948A-A029501D204A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F6F84C0-B4D0-4533-948A-A029501D204A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F6F84C0-B4D0-4533-948A-A029501D204A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98480441-C84A-47B0-B994-30F3BB85BAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98480441-C84A-47B0-B994-30F3BB85BAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98480441-C84A-47B0-B994-30F3BB85BAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98480441-C84A-47B0-B994-30F3BB85BAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B258ABDF-F370-4D4D-986F-B630C7A1994B}
+	EndGlobalSection
+EndGlobal
