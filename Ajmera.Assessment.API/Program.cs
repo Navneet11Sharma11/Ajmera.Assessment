@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Ajmera.Assessment.DL.Entities;
 using Ajmera.Assessment.API.CustomMiddlewares;
 using Ajmera.Assessment.BL.Services;
+using FluentValidation.AspNetCore;
+using System.Reflection;
+using Ajmera.Assessment.Shared.Common;
 
 namespace Ajmera.Assessment.API
 {
@@ -22,7 +25,11 @@ namespace Ajmera.Assessment.API
 
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssembly(Assembly.Load(ConstantMessages.SharedAssemblyName));
+            });
+
             builder.Services.AddDbContext<BookDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetSection("MicroService:Settings:DBConnectionString").Value)
             );

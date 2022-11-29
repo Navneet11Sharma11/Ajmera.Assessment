@@ -1,4 +1,5 @@
-﻿using Ajmera.Assessment.Shared.DTO;
+﻿using Ajmera.Assessment.Shared.Common;
+using Ajmera.Assessment.Shared.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace Ajmera.Assessment.BL.Services
 {
     public interface IBookService
     {
-        Task<IEnumerable<BookMasterDto>> GetBooksAsync();
+        Task<ResultDomain> GetBooksAsync();
         Task<BookMasterDto> GetBookByIdAsync(Guid id);
-        Task<BookMasterDto> SaveBookAsync(BookMasterDto bookMasterDto);
+        Task<ResultDomain> SaveBookAsync(BookMasterDto bookMasterDto);
     }
 }

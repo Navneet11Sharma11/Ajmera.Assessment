@@ -1,15 +1,11 @@
 ﻿using Ajmera.Assessment.DL;
 using Ajmera.Assessment.DL.Entities;
 using Ajmera.Assessment.DL.Repositories;
+using Ajmera.Assessment.Shared.Common;
 using Ajmera.Assessment.Shared.DTO;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ajmera.Assessment.BL.Services
 {
@@ -31,11 +27,16 @@ namespace Ajmera.Assessment.BL.Services
             _bookMasterRepository = bookMasterRepository;
         }
 
-        public async Task<IEnumerable<BookMasterDto>> GetBooksAsync()
+        public async Task<ResultDomain> GetBooksAsync()
         {
             IEnumerable<BookMaster> bookMasterDbEntities = await _bookMasterRepository.GetDBSet().ToListAsync();
 
-            return _mapper.Map<List<BookMasterDto>>(bookMasterDbEntities);
+            var result = new ResultDomain();
+            result.Data = _mapper.Map<List<BookMasterDto>>(bookMasterDbEntities);
+            result.IsSuccess = true;
+            result.TotalCount = bookMasterDbEntities.Count();
+
+            return result;
         }
 
         public async Task<BookMasterDto> GetBookByIdAsync(Guid id)
@@ -45,14 +46,20 @@ namespace Ajmera.Assessment.BL.Services
             return _mapper.Map<BookMasterDto>(bookMasterDbEntity);
         }
 
-        public async Task<BookMasterDto> SaveBookAsync(BookMasterDto bookMasterDto)
+        public async Task<ResultDomain> SaveBookAsync(BookMasterDto bookMasterDto)
         {
+            var result = new ResultDomain();
+
             BookMaster bookMasterDbEntity = _mapper.Map<BookMaster>(bookMasterDto);
 
             BookMaster newBookDbEntity = await _bookMasterRepository.CreateAsync(bookMasterDbEntity);
             await _unitOfWork.SaveChangesAsync();
 
-            return _mapper.Map<BookMasterDto>(newBookDbEntity);
+            result.Data = _mapper.Map<BookMasterDto>(newBookDbEntity);
+            result.IsSuccess = true;
+            result.Message = ConstantMessages.SaveBookMessage;
+
+            return result;
         }
     }
 }

@@ -1,4 +1,6 @@
+using Ajmera.Assessment.API.Models;
 using Ajmera.Assessment.BL.Services;
+using Ajmera.Assessment.Shared.Common;
 using Ajmera.Assessment.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -19,13 +21,25 @@ namespace Ajmera.Assessment.API.Controllers
         }
 
         [HttpGet(Name = "GetBooks")]
+        [ProducesResponseType(typeof(IEnumerable<BookMasterDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetBooks()
         {
-            var result = await _bookService.GetBooksAsync();
+            var result = new ResultDomain();
+            result.IsSuccess = ModelState.IsValid;
+            result.Errors = ModelState.SelectMany(x => x.Value.Errors.Select(s => s.ErrorMessage)).ToList();
 
-            _logger.LogTrace($"Get All Books From GetBooksAsync Method");
-
-            return result == null ? NotFound() : Ok(result);
+            if (result.IsSuccess)
+            {
+                result = await _bookService.GetBooksAsync();
+                if (result.IsSuccess)
+                    _logger.LogTrace($"Get All Books From GetBooksAsync Method");
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
         }
 
         [HttpGet("BookById")]
@@ -42,19 +56,26 @@ namespace Ajmera.Assessment.API.Controllers
         }
 
         [HttpPost(Name = "SaveBook")]
+        [ProducesResponseType(typeof(BookMasterDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody] BookMasterDto bookMasterDto)
         {
-            if (bookMasterDto == null)
+            var result = new ResultDomain();
+            result.IsSuccess = ModelState.IsValid;
+            result.Errors = ModelState.SelectMany(x => x.Value.Errors.Select(s => s.ErrorMessage)).ToList();
+
+            if (result.IsSuccess)
             {
-                _logger.LogError("bookMasterDto object sent from client is null.");
-                return BadRequest("bookMasterDto object is null");
+                result = await _bookService.SaveBookAsync(bookMasterDto);
+                if (result.IsSuccess)
+                    _logger.LogTrace($"Passed bookMasterDto: {bookMasterDto.Name}-{bookMasterDto.AuthorName} in SaveBookAsync Method");
+                return Ok(result);
             }
-
-            var result = await _bookService.SaveBookAsync(bookMasterDto);
-
-            _logger.LogTrace($"Passed bookMasterDto: {bookMasterDto.Name}-{bookMasterDto.AuthorName} in SaveBookAsync Method");
-
-            return result == null ? NotFound() : Ok(result); ;
+            else
+            {
+                return BadRequest(result);
+            }
         }
     }
 }
