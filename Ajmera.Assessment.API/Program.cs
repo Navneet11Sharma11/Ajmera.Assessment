@@ -24,7 +24,7 @@ namespace Ajmera.Assessment.API
             builder.Services.AddSwaggerGen();
 
             // Add services to the container.
-            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddAutoMapper(Assembly.Load(ConstantMessages.BusinessAssemblyName));
             builder.Services.AddControllers().AddFluentValidation(fv =>
             {
                 fv.RegisterValidatorsFromAssembly(Assembly.Load(ConstantMessages.SharedAssemblyName));
