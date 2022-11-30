@@ -21,6 +21,10 @@ namespace Ajmera.Assessment.API.Controllers
             _bookService = bookService;
         }
 
+        /// <summary>
+        /// Returns all the books in the system
+        /// </summary>
+        /// <returns></returns>
         [HttpGet(Name = BookApiRoute.GetBooks)]
         [ProducesResponseType(typeof(IEnumerable<BookMasterDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -43,6 +47,11 @@ namespace Ajmera.Assessment.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns the specific book in the system
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
         [HttpGet(BookApiRoute.BookById)]
         public async Task<IActionResult> Get(Guid bookId)
         {
@@ -56,6 +65,11 @@ namespace Ajmera.Assessment.API.Controllers
             return result == null ? NotFound() : Ok(result);
         }
 
+        /// <summary>
+        /// Save new book in the system
+        /// </summary>
+        /// <param name="bookMasterDto"></param>
+        /// <returns></returns>
         [HttpPost(Name = BookApiRoute.SaveBook)]
         [ProducesResponseType(typeof(BookMasterDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
