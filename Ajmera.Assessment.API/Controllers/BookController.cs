@@ -1,3 +1,4 @@
+using Ajmera.Assessment.API.ApiRoutes;
 using Ajmera.Assessment.API.Models;
 using Ajmera.Assessment.BL.Services;
 using Ajmera.Assessment.Shared.Common;
@@ -8,7 +9,7 @@ using System.Net;
 namespace Ajmera.Assessment.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route(BookApiRoute.ControllerName)]
     public class BookController : ControllerBase
     {
         private readonly ILogger<BookController> _logger;
@@ -20,7 +21,7 @@ namespace Ajmera.Assessment.API.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet(Name = "GetBooks")]
+        [HttpGet(Name = BookApiRoute.GetBooks)]
         [ProducesResponseType(typeof(IEnumerable<BookMasterDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetBooks()
@@ -42,11 +43,11 @@ namespace Ajmera.Assessment.API.Controllers
             }
         }
 
-        [HttpGet("BookById")]
+        [HttpGet(BookApiRoute.BookById)]
         public async Task<IActionResult> Get(Guid bookId)
         {
             if (bookId == Guid.Empty)
-                return BadRequest("bookId is invalid");
+                return BadRequest(ConstantMessages.BookIdInvalidMessage);
 
             var result = await _bookService.GetBookByIdAsync(bookId);
 
@@ -55,7 +56,7 @@ namespace Ajmera.Assessment.API.Controllers
             return result == null ? NotFound() : Ok(result);
         }
 
-        [HttpPost(Name = "SaveBook")]
+        [HttpPost(Name = BookApiRoute.SaveBook)]
         [ProducesResponseType(typeof(BookMasterDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
