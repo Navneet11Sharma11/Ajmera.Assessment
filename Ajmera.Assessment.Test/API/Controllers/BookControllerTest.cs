@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Ajmera.Assessment.Test.API.Controllers
 {
-    public class BookControllerTests
+    public class BookControllerTest
     {
         [Fact]
         public async Task Get_BookById_Returns_OkResult()
@@ -41,6 +41,50 @@ namespace Ajmera.Assessment.Test.API.Controllers
             Assert.Equal("Ajmera Book", bookMasterOkResult.Name);
             Assert.Equal("Navneet Sharma", bookMasterOkResult.AuthorName);
             bookServiceMock.Verify(x => x.GetBookByIdAsync(bookId), Times.Once);
+        }
+
+        [Fact]
+        public async Task Get_BookById_Returns_BadRequest_Result()
+        {
+            // Arrange
+            Mock<IBookService> bookServiceMock = new Mock<IBookService>();
+            Mock<ILogger<BookController>> loggerMock = new Mock<ILogger<BookController>>();
+
+            _ = bookServiceMock.Setup(x => x.GetBookByIdAsync(It.IsAny<Guid>()))
+                .Returns(Task.FromResult<BookMasterResponseDto>(null));
+
+            var sut = new BookController(loggerMock.Object, bookServiceMock.Object);
+            var bookId = Guid.Empty;
+
+            // Act
+            var result = await sut.Get(bookId);
+            var okResult = result as OkObjectResult;
+            BookMasterResponseDto bookMasterOkResult = (BookMasterResponseDto)okResult?.Value;
+
+            // Assert
+            Assert.Null(okResult);
+        }
+
+        [Fact]
+        public async Task Get_BookById_Returns_NotFound_Result()
+        {
+            // Arrange
+            Mock<IBookService> bookServiceMock = new Mock<IBookService>();
+            Mock<ILogger<BookController>> loggerMock = new Mock<ILogger<BookController>>();
+
+            _ = bookServiceMock.Setup(x => x.GetBookByIdAsync(It.IsAny<Guid>()))
+                .Returns(Task.FromResult<BookMasterResponseDto>(null));
+
+            var sut = new BookController(loggerMock.Object, bookServiceMock.Object);
+            var bookId = Guid.NewGuid();
+
+            // Act
+            var result = await sut.Get(bookId);
+            var okResult = result as OkObjectResult;
+            BookMasterResponseDto bookMasterOkResult = (BookMasterResponseDto)okResult?.Value;
+
+            // Assert
+            Assert.Null(okResult);
         }
     }
 }
