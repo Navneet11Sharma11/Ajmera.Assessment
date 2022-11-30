@@ -11,7 +11,7 @@ namespace Ajmera.Assessment.BL.Services
     public interface IBookService
     {
         Task<ResultDomain> GetBooksAsync();
-        Task<BookMasterDto> GetBookByIdAsync(Guid id);
-        Task<ResultDomain> SaveBookAsync(BookMasterDto bookMasterDto);
+        Task<BookMasterResponseDto> GetBookByIdAsync(Guid id);
+        Task<ResultDomain> SaveBookAsync(BookMasterRequestDto bookMasterRequestDto);
     }
 }

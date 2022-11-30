@@ -19,7 +19,7 @@ namespace Ajmera.Assessment.Test.API.Controllers
             Mock<ILogger<BookController>> loggerMock = new Mock<ILogger<BookController>>();
 
             _ = bookServiceMock.Setup(x => x.GetBookByIdAsync(It.IsAny<Guid>()))
-                .Returns(Task.FromResult<BookMasterDto>(new Shared.DTO.BookMasterDto()
+                .Returns(Task.FromResult<BookMasterResponseDto>(new Shared.DTO.BookMasterResponseDto()
                 {
                     Id = new Guid("54c4e684-0a6a-449d-b445-61ddd12ffd3d"),
                     Name = "Ajmera Book",
@@ -32,7 +32,7 @@ namespace Ajmera.Assessment.Test.API.Controllers
             // Act
             var result = await sut.Get(bookId);
             var okResult = result as OkObjectResult;
-            BookMasterDto bookMasterOkResult = (BookMasterDto)okResult?.Value;
+            BookMasterResponseDto bookMasterOkResult = (BookMasterResponseDto)okResult?.Value;
 
             // Assert
             Assert.NotNull(okResult);

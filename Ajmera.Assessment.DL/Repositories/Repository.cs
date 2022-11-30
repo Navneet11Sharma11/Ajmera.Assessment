@@ -1,18 +1,13 @@
-﻿using Ajmera.Assessment.DL.Entities;
+﻿using Ajmera.Assessment.DL.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ajmera.Assessment.DL.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected BookDbContext context;
+        protected AjmeraContext context;
 
-        public Repository(BookDbContext context)
+        public Repository(AjmeraContext context)
         {
             this.context = context;
         }

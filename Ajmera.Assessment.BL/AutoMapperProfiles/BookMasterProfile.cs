@@ -1,4 +1,4 @@
-﻿using Ajmera.Assessment.DL.Entities;
+﻿using Ajmera.Assessment.DL.Model;
 using Ajmera.Assessment.Shared.DTO;
 using AutoMapper;
 using System;
@@ -13,13 +13,22 @@ namespace Ajmera.Assessment.BL.AutoMapperProfiles
     {
         public BookMasterProfile()
         {
-            CreateMap<BookMaster, BookMasterDto>().ReverseMap();
+            CreateMap<BookMaster, BookMasterResponseDto>().ReverseMap();
 
-            CreateMap<BookMasterDto, BookMaster>()
+            CreateMap<BookMasterResponseDto, BookMaster>()
+                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true))
+                .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.Now))
+                .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => "API"))
+                .ForMember(dest => dest.BookMasterID, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
+
+            CreateMap<BookMasterRequestDto, BookMaster>()
+                .ForMember(dest => dest.BookMasterID, opt => opt.MapFrom(src => Guid.NewGuid()))
                 .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true))
                 .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.Now))
                 .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => "API"))
                 .ReverseMap();
+
         }
     }
 }

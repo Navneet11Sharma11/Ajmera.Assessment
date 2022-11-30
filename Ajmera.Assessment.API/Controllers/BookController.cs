@@ -26,7 +26,7 @@ namespace Ajmera.Assessment.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet(Name = BookApiRoute.GetBooks)]
-        [ProducesResponseType(typeof(IEnumerable<BookMasterDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<BookMasterResponseDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetBooks()
         {
@@ -68,13 +68,13 @@ namespace Ajmera.Assessment.API.Controllers
         /// <summary>
         /// Save new book in the system
         /// </summary>
-        /// <param name="bookMasterDto"></param>
+        /// <param name="bookMasterRequestDto"></param>
         /// <returns></returns>
         [HttpPost(Name = BookApiRoute.SaveBook)]
-        [ProducesResponseType(typeof(BookMasterDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BookMasterResponseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post([FromBody] BookMasterDto bookMasterDto)
+        public async Task<IActionResult> Post([FromBody] BookMasterRequestDto bookMasterRequestDto)
         {
             var result = new ResultDomain();
             result.IsSuccess = ModelState.IsValid;
@@ -82,9 +82,9 @@ namespace Ajmera.Assessment.API.Controllers
 
             if (result.IsSuccess)
             {
-                result = await _bookService.SaveBookAsync(bookMasterDto);
+                result = await _bookService.SaveBookAsync(bookMasterRequestDto);
                 if (result.IsSuccess)
-                    _logger.LogTrace($"Passed bookMasterDto: {bookMasterDto.Name}-{bookMasterDto.AuthorName} in SaveBookAsync Method");
+                    _logger.LogTrace($"Passed bookMasterDto: {bookMasterRequestDto.Name}-{bookMasterRequestDto.AuthorName} in SaveBookAsync Method");
                 return Ok(result);
             }
             else

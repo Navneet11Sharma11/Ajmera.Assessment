@@ -1,12 +1,12 @@
-﻿using Ajmera.Assessment.DL.Entities;
+﻿using Ajmera.Assessment.DL.Model;
 
 namespace Ajmera.Assessment.DL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly BookDbContext context;
+        private readonly AjmeraContext context;
 
-        public UnitOfWork(BookDbContext context)
+        public UnitOfWork(AjmeraContext context)
         {
             this.context = context;
         }

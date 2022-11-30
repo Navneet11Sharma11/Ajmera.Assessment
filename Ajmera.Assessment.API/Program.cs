@@ -1,7 +1,7 @@
 using Ajmera.Assessment.DL.Repositories;
 using Ajmera.Assessment.DL;
 using Microsoft.EntityFrameworkCore;
-using Ajmera.Assessment.DL.Entities;
+using Ajmera.Assessment.DL.Model;
 using Ajmera.Assessment.API.CustomMiddlewares;
 using Ajmera.Assessment.BL.Services;
 using FluentValidation.AspNetCore;
@@ -30,7 +30,7 @@ namespace Ajmera.Assessment.API
                 fv.RegisterValidatorsFromAssembly(Assembly.Load(ConstantMessages.SharedAssemblyName));
             });
 
-            builder.Services.AddDbContext<BookDbContext>(options =>
+            builder.Services.AddDbContext<AjmeraContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetSection("MicroService:Settings:DBConnectionString").Value)
             );
             // DAL

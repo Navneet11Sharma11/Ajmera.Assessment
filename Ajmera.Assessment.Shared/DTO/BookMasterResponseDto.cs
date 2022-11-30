@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ajmera.Assessment.Shared.DTO
 {
-    public partial class BookMasterDto
+    public partial class BookMasterResponseDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

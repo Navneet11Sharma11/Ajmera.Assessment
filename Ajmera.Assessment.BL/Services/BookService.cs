@@ -1,5 +1,5 @@
 ﻿using Ajmera.Assessment.DL;
-using Ajmera.Assessment.DL.Entities;
+using Ajmera.Assessment.DL.Model;
 using Ajmera.Assessment.DL.Repositories;
 using Ajmera.Assessment.Shared.Common;
 using Ajmera.Assessment.Shared.DTO;
@@ -32,30 +32,30 @@ namespace Ajmera.Assessment.BL.Services
             IEnumerable<BookMaster> bookMasterDbEntities = await _bookMasterRepository.GetDBSet().ToListAsync();
 
             var result = new ResultDomain();
-            result.Data = _mapper.Map<List<BookMasterDto>>(bookMasterDbEntities);
+            result.Data = _mapper.Map<List<BookMasterResponseDto>>(bookMasterDbEntities);
             result.IsSuccess = true;
             result.TotalCount = bookMasterDbEntities.Count();
 
             return result;
         }
 
-        public async Task<BookMasterDto> GetBookByIdAsync(Guid id)
+        public async Task<BookMasterResponseDto> GetBookByIdAsync(Guid id)
         {
             var bookMasterDbEntity = await _bookMasterRepository.GetAsync(id);
 
-            return _mapper.Map<BookMasterDto>(bookMasterDbEntity);
+            return _mapper.Map<BookMasterResponseDto>(bookMasterDbEntity);
         }
 
-        public async Task<ResultDomain> SaveBookAsync(BookMasterDto bookMasterDto)
+        public async Task<ResultDomain> SaveBookAsync(BookMasterRequestDto bookMasterRequestDto)
         {
             var result = new ResultDomain();
 
-            BookMaster bookMasterDbEntity = _mapper.Map<BookMaster>(bookMasterDto);
+            BookMaster bookMasterDbEntity = _mapper.Map<BookMaster>(bookMasterRequestDto);
 
             BookMaster newBookDbEntity = await _bookMasterRepository.CreateAsync(bookMasterDbEntity);
             await _unitOfWork.SaveChangesAsync();
 
-            result.Data = _mapper.Map<BookMasterDto>(newBookDbEntity);
+            result.Data = _mapper.Map<BookMasterResponseDto>(newBookDbEntity);
             result.IsSuccess = true;
             result.Message = ConstantMessages.SaveBookMessage;
 
