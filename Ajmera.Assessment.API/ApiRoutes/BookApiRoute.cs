@@ -1,6 +1,6 @@
 ﻿namespace Ajmera.Assessment.API.ApiRoutes
 {
-    public class BookApiRoute
+    public static class BookApiRoute
     {
         public const String ControllerName = "controller";
         public const String GetBooks = "GetBooks";
