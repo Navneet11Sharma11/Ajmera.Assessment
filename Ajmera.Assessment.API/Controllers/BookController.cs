@@ -42,9 +42,7 @@ namespace Ajmera.Assessment.API.Controllers
                 return Ok(result);
             }
             else
-            {
                 return BadRequest(result);
-            }
         }
 
         /// <summary>
@@ -88,9 +86,7 @@ namespace Ajmera.Assessment.API.Controllers
                 return Ok(result);
             }
             else
-            {
                 return BadRequest(result);
-            }
         }
     }
 }
