@@ -38,15 +38,19 @@ namespace Ajmera.Assessment.API.CustomMiddlewares
             };
             switch (exception)
             {
-                case ApplicationException ex:
-                    if (ex.Message.Contains("Invalid Token"))
+                case ApplicationException appEx:
+                    if (appEx.Message.Contains("Invalid Token"))
                     {
                         response.StatusCode = (int)HttpStatusCode.Forbidden;
-                        errorResponse.Message = ex.Message;
+                        errorResponse.Message = appEx.Message;
                         break;
                     }
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    errorResponse.Message = ex.Message;
+                    errorResponse.Message = appEx.Message;
+                    break;
+                case Exception ex:
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    errorResponse.Message = $"Internal server error! - Message: {ex.Message}";
                     break;
                 default:
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;

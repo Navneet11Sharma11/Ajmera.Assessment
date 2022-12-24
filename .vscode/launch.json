@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Ajmera.Assessment.API/bin/Debug/net6.0/Ajmera.Assessment.API.dll",
+            "program": "${workspaceFolder}/Ajmera.Assessment.API/bin/Debug/net7.0/Ajmera.Assessment.API.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Ajmera.Assessment.API",
             "stopAtEntry": false,
