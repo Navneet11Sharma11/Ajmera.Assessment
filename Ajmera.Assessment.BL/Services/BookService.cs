@@ -33,8 +33,8 @@ namespace Ajmera.Assessment.BL.Services
 
             var result = new ResultDomain();
             result.Data = _mapper.Map<List<BookMasterResponseDto>>(bookMasterDbEntities);
-            result.IsSuccess = true;
             result.TotalCount = bookMasterDbEntities.Count();
+            result.IsSuccess = true;
 
             return result;
         }
