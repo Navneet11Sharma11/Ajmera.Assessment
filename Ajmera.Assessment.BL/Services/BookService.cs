@@ -1,5 +1,5 @@
 ﻿using Ajmera.Assessment.DL;
-using Ajmera.Assessment.DL.Model;
+using Ajmera.Assessment.DL.Models;
 using Ajmera.Assessment.DL.Repositories;
 using Ajmera.Assessment.Shared.Common;
 using Ajmera.Assessment.Shared.DTO;

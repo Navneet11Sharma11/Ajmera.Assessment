@@ -5,7 +5,7 @@ namespace Ajmera.Assessment.DL.Models;
 
 public partial class BookMaster
 {
-    public Guid BookMasterId { get; set; }
+    public Guid BookMasterID { get; set; }
 
     public string Name { get; set; } = null!;
 

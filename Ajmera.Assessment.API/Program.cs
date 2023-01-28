@@ -1,7 +1,7 @@
 using Ajmera.Assessment.DL.Repositories;
 using Ajmera.Assessment.DL;
 using Microsoft.EntityFrameworkCore;
-using Ajmera.Assessment.DL.Model;
+using Ajmera.Assessment.DL.Models;
 using Ajmera.Assessment.API.CustomMiddlewares;
 using Ajmera.Assessment.BL.Services;
 using FluentValidation.AspNetCore;

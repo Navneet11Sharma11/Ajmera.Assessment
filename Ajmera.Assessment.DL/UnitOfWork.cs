@@ -1,4 +1,4 @@
-﻿using Ajmera.Assessment.DL.Model;
+﻿using Ajmera.Assessment.DL.Models;
 
 namespace Ajmera.Assessment.DL
 {

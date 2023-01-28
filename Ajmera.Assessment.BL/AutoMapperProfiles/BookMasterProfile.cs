@@ -1,4 +1,4 @@
-﻿using Ajmera.Assessment.DL.Model;
+﻿using Ajmera.Assessment.DL.Models;
 using Ajmera.Assessment.Shared.DTO;
 using AutoMapper;
 using System;
