@@ -31,8 +31,8 @@ namespace Ajmera.Assessment.API
             });
 
             builder.Services.AddDbContext<AjmeraContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetSection("MicroService:Settings:DBConnectionString").Value)
-            );
+                options.UseSqlServer((builder.Configuration.GetSection("DBConnectionString").Value)
+            ),ServiceLifetime.Singleton);
             // DAL
             builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             // BL
