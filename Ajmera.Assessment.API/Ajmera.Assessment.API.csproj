@@ -13,6 +13,7 @@
     <NoWarn>$(NoWorn);1591</NoWarn>
   </PropertyGroup>
   
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Asp.netCore' " />
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
