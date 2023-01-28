@@ -1,3 +1,10 @@
+GO
+
+IF NOT EXISTS (SELECT name FROM master.sys.databases WHERE name = N'Ajmera')
+CREATE DATABASE Ajmera
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[BookMaster]') AND type in (N'U'))
 CREATE TABLE BookMaster(
 BookMasterID UNIQUEIDENTIFIER DEFAULT (NEWID()),
 Name VARCHAR(100) NOT NULL,
@@ -9,3 +16,4 @@ ModifiedBy VARCHAR(100) NULL,
 ModifiedDate DATETIME NULL,
 CONSTRAINT PK_BookMaster PRIMARY KEY(BookMasterID)
 )
+GO
