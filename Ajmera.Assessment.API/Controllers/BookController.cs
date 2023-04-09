@@ -3,12 +3,14 @@ using Ajmera.Assessment.API.Models;
 using Ajmera.Assessment.BL.Services;
 using Ajmera.Assessment.Shared.Common;
 using Ajmera.Assessment.Shared.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace Ajmera.Assessment.API.Controllers
 {
     [ApiController]
+    //[Authorize]
     [Route(BookApiRoute.ControllerName)]
     public class BookController : ControllerBase
     {
