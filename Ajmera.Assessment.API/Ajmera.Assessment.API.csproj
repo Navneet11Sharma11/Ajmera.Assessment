@@ -17,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Hashids.net" Version="1.7.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -32,4 +33,12 @@
     <ProjectReference Include="..\Ajmera.Assessment.Shared\Ajmera.Assessment.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ApiUtilities\" />
+    <None Remove="Logging\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ApiUtilities\" />
+    <Folder Include="Logging\" />
+  </ItemGroup>
 </Project>

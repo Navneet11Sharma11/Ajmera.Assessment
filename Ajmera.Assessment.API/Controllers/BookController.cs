@@ -1,10 +1,12 @@
 using Ajmera.Assessment.API.ApiRoutes;
+using Ajmera.Assessment.API.ApiUtilities;
 using Ajmera.Assessment.API.Models;
 using Ajmera.Assessment.BL.Services;
 using Ajmera.Assessment.Shared.Common;
 using Ajmera.Assessment.Shared.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net;
 
 namespace Ajmera.Assessment.API.Controllers
@@ -22,6 +24,16 @@ namespace Ajmera.Assessment.API.Controllers
             _logger = logger;
             _bookService = bookService;
         }
+
+        //[HttpGet(Name = "ping")]
+        //[Route("ping")]
+        //[ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //public async Task<ServiceResponse<string>> Ping(string ping)
+        //{
+            //return "Ping";
+        //}
+        
 
         /// <summary>
         /// Returns all the books in the system

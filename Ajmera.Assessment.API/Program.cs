@@ -7,6 +7,7 @@ using Ajmera.Assessment.BL.Services;
 using FluentValidation.AspNetCore;
 using System.Reflection;
 using Ajmera.Assessment.Shared.Common;
+using Ajmera.Assessment.API.Logging;
 
 namespace Ajmera.Assessment.API
 {
@@ -37,6 +38,8 @@ namespace Ajmera.Assessment.API
             builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             // BL
             builder.Services.AddTransient<IBookService, BookService>();
+            builder.Services.AddSingleton<EnableRequestBufferingMiddleware>();
+            builder.Services.AddTransient<IErrorLog, ErrorLog>();
             builder.Services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
 
             var app = builder.Build();
